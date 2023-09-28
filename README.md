@@ -45,7 +45,7 @@
 
 - Связь между таблицами "OrderItems" и "Products" осуществляется через поле "Product_ID" в таблице "OrderItems" и поле "ID" в таблице "Products". Это позволяет определить, какие товары были в каждом элементе заказа.
 
-![Структура базы данных](https://github.com/1emd/RetailDB-SQL-Project/blob/main/image_file/Db_image.png)
+![Даталогическая схема](https://raw.githubusercontent.com/1emd/RetailDB-SQL-Project/main/image_file/Db_image.png){width=50%}
 
 ## SQL Запросы
 В файле `SQL_Queries.sql` содержится код SQL запросов.
@@ -66,11 +66,11 @@ GROUP BY Customers.Name;
 **Запрос 2:** Нахождение количества дочерних элементов первого уровня вложенности для категорий номенклатуры
 
 ```sql
-SELECT Categories.Name, COUNT(DISTINCT Products.ID) AS "Count"
-FROM Categories
-LEFT JOIN Categories AS ParentCategories ON Categories.ID = ParentCategories.Parent_Category
-LEFT JOIN Products ON (ParentCategories.ID IS NULL AND Products.Category_ID = Categories.ID) OR (ParentCategories.ID IS NOT NULL AND Products.Category_ID = ParentCategories.ID)
-GROUP BY Categories.Name;
+SELECT ParentCategories.Name AS "Parent Category", COUNT(Categories.ID) AS "Child Categories Count"
+FROM Categories AS ParentCategories
+LEFT JOIN Categories ON ParentCategories.ID = Categories.Parent_Category_ID
+WHERE ParentCategories.Parent_Category_ID IS NULL
+GROUP BY ParentCategories.Name;
 ```
 
 ## Примеры результатов
