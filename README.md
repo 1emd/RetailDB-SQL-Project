@@ -45,7 +45,7 @@
 
 - Связь между таблицами "OrderItems" и "Products" осуществляется через поле "Product_ID" в таблице "OrderItems" и поле "ID" в таблице "Products". Это позволяет определить, какие товары были в каждом элементе заказа.
 
-![Структура базы данных](relative_path_to_image.png)
+![Структура базы данных](https://github.com/1emd/RetailDB-SQL-Project/blob/main/image_file/Db_image.png)
 
 ## SQL Запросы
 В файле `SQL_Queries.sql` содержится код SQL запросов.
